@@ -9,8 +9,8 @@ const counter = (state = 0, action) => {
   }
 }
 
-const Counter = ({}) => (
-  <h1>HelloC</h1>
+const Counter = ({value}) => (
+  <h1>{value}</h1>
 );
 
 const { createStore } = Redux;
@@ -19,7 +19,7 @@ const store = createStore(counter);
 
 const render = () => {
   ReactDOM.render(
-    <Counter/>,
+    <Counter value={store.getState()}/>,
     document.getElementById('root')
   );
 };
