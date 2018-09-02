@@ -3,5 +3,6 @@
 ## install babel to convert jsx to js
 
 ```
-sudo cnpm install -g babel-cli babel-preset-es2015 babel-preset-react
+sudo cnpm install -g babel-cli
+cnpm install babel-preset-es2015 babel-preset-react
 ```
