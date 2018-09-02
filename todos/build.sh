@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cnpm install babel-preset-es2015 babel-preset-react
+cnpm install babel-preset-env babel-preset-react
 babel src -d build
