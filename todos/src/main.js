@@ -45,39 +45,55 @@ const todos = (state=[], action) => {
   }
 }
 
-console.log("All tests passed")
+// console.log("All tests passed")
 
 
-// const { combineReducers } = Redux;
-//
-// const todoApp = combineReducers({
-//   todos,
-//   visibilityFilter
-// });
-//
-// const { createStore } = Redux;
-//
-// const store = createStore(todoApp);
-//
-// const render = () => {
-//   ReactDOM.render(
-//     <Counter
-//       value={store.getState()}
-//       onIncrement={
-//         ()=> store.dispatch({
-//           type: 'INCREMENT'
-//         })
-//       }
-//       onDecrement={
-//         ()=> store.dispatch({
-//           type: 'DECREMENT'
-//         })
-//       }
-//       />,
-//     document.getElementById('root')
-//   );
-// };
-//
-// render();
-//
-// store.subscribe(render);
+const { combineReducers } = Redux;
+
+const todoApp = combineReducers({
+  todos,
+  visibilityFilter
+});
+
+const { createStore } = Redux;
+
+const store = createStore(todoApp);
+
+const { Component } = React;
+
+let nextTodoId = 0;
+class TodoApp extends Component {
+  render() {
+    return (
+      <div>
+        <button onClick={() => {
+            store.dispatch({
+              type: 'ADD_TODO',
+              text: 'Test',
+              id: nextTodoId++
+            });
+          }} >
+          Todo
+        </button>
+        <ul>
+          {this.props.todos.map(todo =>
+                                <li key={todo.id}>
+                                    {todo.text}
+                                  </li>
+                               )}
+      </ul>
+        </div>
+    );
+  }
+}
+
+const render = () => {
+  ReactDOM.render(
+    <TodoApp todos={store.getState().todos}/>,
+    document.getElementById('root')
+  );
+};
+
+render();
+
+store.subscribe(render);
